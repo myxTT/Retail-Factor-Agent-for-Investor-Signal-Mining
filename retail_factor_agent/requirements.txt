@@ -1,0 +1,8 @@
+pandas
+numpy
+scikit-learn
+matplotlib
+requests
+joblib
+# optional for live crawling
+akshare

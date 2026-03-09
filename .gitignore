@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+
+# Virtual env
+.venv/
+venv/
+env/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Secrets
+.env
+*.key
+*.pem
+
+# Large or generated data
+analysis_results/
+run_data/
+retail_factor_agent/workspace/
+*.xlsx
+*.xls
+*.png
+*.jpg
+*.jpeg
+*.webp

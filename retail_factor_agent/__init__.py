@@ -1,0 +1,2 @@
+"""Retail factor agent package."""
+
