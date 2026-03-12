@@ -125,7 +125,7 @@ def _to_wide_row(result: dict[str, Any], allowed_factors: list[str], meta: dict[
 
 def run_llm_extraction(cfg: AgentConfig, posts_csv: Path) -> tuple[Path, Path]:
     cfg.ensure_dirs()
-    api_key = os.getenv("LLM_API_KEY") or os.getenv("OPENAI_API_KEY")
+    api_key = cfg.llm_api_key or os.getenv("LLM_API_KEY") or os.getenv("OPENAI_API_KEY")
     if not api_key:
         raise RuntimeError("缺少 LLM_API_KEY/OPENAI_API_KEY 环境变量。")
 

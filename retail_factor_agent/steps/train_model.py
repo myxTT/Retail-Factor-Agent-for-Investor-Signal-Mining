@@ -77,7 +77,14 @@ def _metric_dict(y_true: pd.Series, y_pred: np.ndarray, y_prob: np.ndarray, mode
 
 def run_training(cfg: AgentConfig, infer_table_path: Path | None = None) -> tuple[Path, Path, Path]:
     cfg.ensure_dirs()
-    df_all = _read_labeled_data(cfg.factor_table_path)
+    source_table = cfg.user_stock_data_path if cfg.user_stock_data_path else cfg.factor_table_path
+    if source_table is None:
+        raise FileNotFoundError("未配置训练总表路径。")
+    source_table = Path(source_table)
+    if not source_table.exists():
+        raise FileNotFoundError(f"训练总表不存在: {source_table}")
+
+    df_all = _read_labeled_data(source_table)
     df = _filter_by_date_range(df_all, cfg.start_date, cfg.end_date)
     train_base_path = cfg.output_dir / "training_master_table_filtered.csv"
     df.to_csv(train_base_path, index=False, encoding="utf-8-sig")
